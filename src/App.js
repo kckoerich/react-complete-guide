@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Person from './Person/Person.js'
-import './App.css';
+import classes from './App.css';
 //import Radium, {StyleRoot} from 'radium'
 
 class App extends Component {
@@ -95,22 +95,22 @@ class App extends Component {
       }*/
     }
 
-    const classes = [];
+    const assignedClasses = [];
 
     const personsSize = this.state.persons.length;
 
     if(personsSize <= 2){
-      classes.push('red');
+      assignedClasses.push( classes.red );
     }
 
     if(personsSize <= 1){
-      classes.push('bold')
+      assignedClasses.push( classes.bold )
     }
 
     return (
       //<StyleRoot>
-        <div className='App'>
-          <p className={classes.join(' ')}>This is really working</p>
+        <div className={classes.App}>
+          <p className={assignedClasses.join(' ')}>This is really working</p>
           <button style={style} onClick={ this.tooglePersonsHandler }>Toggle Persons</button>
           {persons}
         </div>
