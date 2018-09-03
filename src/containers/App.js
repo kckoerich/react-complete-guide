@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Person from '../components/Persons/Person/Person'
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 import classes from './App.css';
 //import Radium, {StyleRoot} from 'radium';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
 
@@ -57,46 +57,25 @@ class App extends Component {
   }
 
   render() {
-    let btnClass = '';
     let persons = null;
 
     if(this.state.showPersons){
-      persons = (
-        <div >
-          {this.state.persons.map((person, index) => {
-            return (<ErrorBoundary key={person.id}>
-              <Person
-                click={() => this.deletePersonHandler(index)}
-                name={person.name} 
-                age={person.age} 
-                changed={(event) => this.nameChangedHandler(event, person.id)}>My hobbies: race</Person>
-              </ErrorBoundary>
-            )
-          })}
-        </div> 
-
-      );
-     btnClass = classes.Red;
-    }
-
-    const assignedClasses = [];
-
-    const personsSize = this.state.persons.length;
-
-    if(personsSize <= 2){
-      assignedClasses.push( classes.red );
-    }
-
-    if(personsSize <= 1){
-      assignedClasses.push( classes.bold )
+      persons = 
+        <Persons 
+          persons={this.state.persons} 
+          clicked={this.deletePersonHandler} 
+          changed={this.nameChangedHandler}/>;
+      
     }
 
     return (
       //<StyleRoot>
         <div className={classes.App}>
-          <p className={assignedClasses.join(' ')}>This is really working</p>
-          <button className={btnClass} onClick={ this.tooglePersonsHandler }>Toggle Persons</button>
-          {persons}
+          <Cockpit 
+            showPersons={this.state.showPersons} 
+            persons={this.state.persons}
+            clicked={this.tooglePersonsHandler}/>
+            {persons}        
         </div>
       //</StyleRoot>
       
