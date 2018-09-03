@@ -4,7 +4,21 @@ import Person from '../Persons/Person/Person'
 
 class Persons extends Component {
 
+    constructor(props){
+        super(props);
+        console.log('[Persons.js] constructor', props);
+      }
+    
+      componentWillMount(){
+        console.log('[Persons.js] componentWillMount');
+      }
+      
+      componentDidMount(){
+        console.log('[Persons.js] componentDidMount');
+      }
+
     render () {
+        console.log('[Persons.js] render');
         return this.props.persons.map((person, index) => {
             return (<ErrorBoundary key={person.id}>
                     <Person

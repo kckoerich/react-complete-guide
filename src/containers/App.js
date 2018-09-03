@@ -6,16 +6,27 @@ import classes from './App.css';
 
 class App extends Component {
 
-  state = {
-    persons: [
-      {id: 1, name: 'Kaio', age: 32},
-      {id: 2, name: 'Mari', age: 30},
-      {id: 3, name: 'Didi', age: 53}
-    ]
+  constructor(props){
+    super(props);
+    console.log('[App.js] constructor', props);
+    this.state = {
+      persons: [
+        {id: 1, name: 'Kaio', age: 32},
+        {id: 2, name: 'Mari', age: 30},
+        {id: 3, name: 'Didi', age: 53}
+      ]
+    }
+  }
+
+  componentWillMount(){
+    console.log('[App.js] componentWillMount');
+  }
+  
+  componentDidMount(){
+    console.log('[App.js] componentDidMount');
   }
 
   switchNameHandler = (newName) => {
-    //console.log('Was clicked')
     this.setState({
       persons: [
         {name: newName, age: 32},
@@ -57,6 +68,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('[App.js] render');
     let persons = null;
 
     if(this.state.showPersons){
